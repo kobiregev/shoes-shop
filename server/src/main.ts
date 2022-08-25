@@ -7,6 +7,7 @@ import { CORS_ORIGIN } from "./constants";
 import { connectToDatabase, disconnectFromDatabase } from "./utils/database";
 import userRoute from "./modules/user/user.route";
 import authRoute from "./modules/auth/auth.route";
+import productRoute from "./modules/product/product.route";
 import deserializeUser from "./middleware/deserializeUser";
 const PORT = process.env.PORT || 4000;
 
@@ -26,6 +27,7 @@ app.use(deserializeUser);
 // Routes
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/products", productRoute);
 
 const server = app.listen(PORT, async () => {
   await connectToDatabase();
