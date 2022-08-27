@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { CreateProductBody, UpdateProductBody } from "./product.schema";
 import {
   createProduct,
-  findProductById,
+  getProducts,
   updateProductById,
 } from "./product.service";
 
@@ -23,7 +23,6 @@ export async function createProductHandler(
   }
 }
 
-// todo: refactor, might be able to do only one call to database, need to check.
 export async function updateProductHandler(
   req: Request<{}, {}, UpdateProductBody>,
   res: Response
@@ -45,6 +44,16 @@ export async function updateProductHandler(
           `Product with name "${Object.values(e?.keyValue)[0]}" already exists`
         );
     }
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e.message);
+  }
+}
+
+// todo: ? maybe add pagination to products
+export async function getAllProductsHandler(req: Request, res: Response) {
+  try {
+    const products = await getProducts();
+    return res.status(StatusCodes.OK).send(products);
+  } catch (e: any) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e.message);
   }
 }

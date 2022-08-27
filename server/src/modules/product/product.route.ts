@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProductHandler,
+  getAllProductsHandler,
   updateProductHandler,
 } from "./product.controller";
 import { processRequestBody } from "zod-express-middleware";
@@ -18,5 +19,7 @@ router.put(
   processRequestBody(updateProductSchema.body),
   updateProductHandler
 );
+
+router.get("/", getAllProductsHandler);
 
 export default router;

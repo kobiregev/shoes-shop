@@ -11,3 +11,7 @@ export async function findProductById(id: string) {
 export async function updateProductById(id: string, product: Partial<Product>) {
   return ProductModel.findByIdAndUpdate(id, product, { new: true });
 }
+
+export async function getProducts() {
+  return ProductModel.find();
+}
