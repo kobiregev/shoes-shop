@@ -17,4 +17,18 @@ export const createProductSchema = {
   }),
 };
 
+export const updateProductSchema = {
+  body: object({
+    id: string({
+      required_error: "id is required",
+    }),
+    name: string().optional(),
+    imagesUrl: string().array().optional(),
+    price: number().optional(),
+    description: string().optional(),
+    sizes: z.nativeEnum(Sizes).array().optional(),
+  }),
+};
+
+export type UpdateProductBody = TypeOf<typeof updateProductSchema.body>;
 export type CreateProductBody = TypeOf<typeof createProductSchema.body>;
