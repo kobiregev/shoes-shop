@@ -1,5 +1,4 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
-import { string } from "zod";
 
 export enum Sizes {
   eu38 = "38",
@@ -10,7 +9,7 @@ export enum Sizes {
   eu43 = "43",
   eu44 = "44",
 }
-
+// might add not available boolean prop
 export class Product {
   @prop({ required: true, unique: true })
   name: string;

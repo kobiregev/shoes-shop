@@ -1,4 +1,4 @@
-import { infer, z, number, object, string, TypeOf } from "zod";
+import { z, number, object, string, TypeOf } from "zod";
 import { Sizes } from "./product.model";
 
 export const createProductSchema = {
